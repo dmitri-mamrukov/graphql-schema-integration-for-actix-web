@@ -1,0 +1,29 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Post {
+    id: Int!
+    title: String!
+}
+
+input CreatePost {
+    title: String!
+}
+
+input UpdatePost {
+    id: Int!
+    title: String!
+}
+
+type Query {
+    getPost(id: Int!): Post! @juniper(ownership: "owned")
+    allPosts: [Post!]! @juniper(ownership: "owned")
+}
+
+type Mutation {
+    createPost(input: CreatePost!): Post @juniper(ownership: "owned")
+    updatePost(input: UpdatePost!): Post @juniper(ownership: "owned")
+    deletePost(id: Int!): Post @juniper(ownership: "owned")
+}
